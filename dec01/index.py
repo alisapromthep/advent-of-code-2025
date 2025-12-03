@@ -40,11 +40,17 @@ puzzle_list = create_rotation_list(input_list)
 #dial right from 99 goes to 0
 
 result = [50] 
+test = ['R50','L50']
+        
+test_list = create_rotation_list(test)
 
 def calculate_new_dial(start,data):
     #data = [letter,distance]
     direction = data[0]
     distance = data[1]
+    #turning it 100 times always go back to the same spot, so the tenth and ones are the true distance
+    if distance > 100:
+        distance = distance % 100
     newStart = 0
     if direction == "L":
         newStart = start - distance
@@ -75,12 +81,13 @@ def calculate_result(result,rotations_list):
             num_of_zeros += 1
     return num_of_zeros;
 
-example_result = calculate_result(result,example_rotation)
-print(example_result)
+#example_result = calculate_result(result,example_rotation)
+#print(example_result)
 
 puzzle_result = calculate_result(result,puzzle_list)
 print(puzzle_result)
 
-
+test_result = calculate_result(result,test_list)
+print(test_result)
 
 
