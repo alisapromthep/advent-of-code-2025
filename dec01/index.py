@@ -79,7 +79,7 @@ def calculate_result(result,rotations_list):
         result.append(next_dial)
         if next_dial == 0:
             num_of_zeros += 1
-    return num_of_zeros;
+    return num_of_zeros
 
 #example_result = calculate_result(result,example_rotation)
 #print(example_result)
@@ -87,7 +87,51 @@ def calculate_result(result,rotations_list):
 puzzle_result = calculate_result(result,puzzle_list)
 print(puzzle_result)
 
-test_result = calculate_result(result,test_list)
-print(test_result)
+# test_result = calculate_result(result,test_list)
+# print(test_result)
 
+######PART2#######
 
+#need to count zeros everytime the rotation passed 0, and end at 0
+
+def calculate_dial_and_zero(start,data, num_of_zero):
+    #data = [letter,distance]
+    direction = data[0]
+    distance = data[1]
+    #turning it 100 times always go back to the same spot, so the tenth and ones are the true distance
+    if distance > 100:
+        distance = distance % 100
+    newStart = 0
+    if direction == "L":
+        newStart = start - distance
+    else:
+        newStart = start + distance
+    if newStart < 0:
+        newStart = newStart + 100 
+        num_of_zero += 1
+    elif newStart > 100:
+        newStart = newStart - 100
+        num_of_zero += 1
+    elif newStart == 100:
+        newStart = 0
+    else:
+        pass
+    return [newStart, num_of_zero]
+
+result_two = [50]
+def calculate_result(result,rotations_list):
+    num_of_zeros = 0
+    for i in range(len(rotations_list)):
+        calculated_info = calculate_dial_and_zero(result[i],rotations_list[i],num_of_zeros)
+        result.append(calculated_info[0])
+        print('after cal info', num_of_zeros)
+        num_of_zeros = calculated_info[1]
+        if calculated_info[0] == 0:
+            num_of_zeros += 1
+    return num_of_zeros
+
+example_result_two = calculate_result(result_two,example_rotation)
+print(example_result_two)
+
+# puzzle_result_two = calculate_result(result_two,puzzle_list)
+# print(puzzle_result_two)
