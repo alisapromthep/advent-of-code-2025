@@ -9,6 +9,20 @@ from input import example_input, input
 #3.find the size of the range, add into the list as [1]
 #4. store the last number in the range [2] (for debugging)
 
+example_list = example_input.split(",")
+print(example_list)
+
+def create_range_list(str):
+    range_list = str.split("-")
+    for s in range_list:
+        s.replace(s,int(s),1)
+    return range_list
+        
+
+for r in example_list:
+    print(create_range_list(r))
+
+
 
 #invild IDS are sequence of repeating digits, i.e. 55,6464, 123123
 #no numbers have leading zeros 
