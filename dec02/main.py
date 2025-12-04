@@ -13,17 +13,16 @@ example_list = example_input.split(",")
 #print(example_list)
 
 
-
 def create_range_list(str):
-    range_list = str.split("-")
-    return [int(item) for item in range_list]
+    return str.split("-")
+    
 
-example_ranges = []
-for ranges in example_list:
-    int_range = create_range_list(ranges)
-    example_ranges.append(int_range)
+# example_ranges = []
+# for ranges in example_list:
+#     int_range = create_range_list(ranges)
+#     example_ranges.append(int_range)
 
-print(example_ranges)
+
 
 #invild IDS are sequence of repeating digits, i.e. 55,6464, 123123
 #no numbers have leading zeros 
@@ -39,3 +38,13 @@ print(example_ranges)
 #4.split the number by digit number above(splitting it in half)
 #5.use loop to check if the digit matches 
 
+def check_valid_id(str):
+    num_digits = len(str)
+    if num_digits % 2 != 2:
+        return True
+    else:
+        int_id = int(str)
+        #find the middle
+        mid = num_digits/2 
+        #compare the digits 
+        
