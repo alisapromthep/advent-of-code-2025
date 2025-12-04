@@ -10,19 +10,20 @@ from input import example_input, input
 #4. store the last number in the range [2] (for debugging)
 
 example_list = example_input.split(",")
-print(example_list)
+#print(example_list)
+
+
 
 def create_range_list(str):
     range_list = str.split("-")
-    for s in range_list:
-        s.replace(s,int(s),1)
-    return range_list
-        
+    return [int(item) for item in range_list]
 
-for r in example_list:
-    print(create_range_list(r))
+example_ranges = []
+for ranges in example_list:
+    int_range = create_range_list(ranges)
+    example_ranges.append(int_range)
 
-
+print(example_ranges)
 
 #invild IDS are sequence of repeating digits, i.e. 55,6464, 123123
 #no numbers have leading zeros 
